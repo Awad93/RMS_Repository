@@ -40,7 +40,7 @@ namespace WebApplication1.Models
         }
         public static SqlConnection Connect()
         {
-            return Connect("DELLDSR", "RMS");
+            return Connect("localhost", "RMS");
         }
         public static SqlConnection Connect(string server_name, string db_name)
         {

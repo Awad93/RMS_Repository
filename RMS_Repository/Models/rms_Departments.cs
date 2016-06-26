@@ -32,7 +32,7 @@ namespace WebApplication1.Models
         #region Methods
         public static List<rms_Departments> getAllColleges()
      {
-        SqlConnection myConnection = new SqlConnection("server=DELLDSR;" +
+        SqlConnection myConnection = new SqlConnection("server=localhost;" +
             "Trusted_Connection=yes;" +
             "database = RMS;" +
             "connection timeout=30;");
