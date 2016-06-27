@@ -171,19 +171,17 @@
 							<div class="form-group">
 								<label class="col-sm-2 control-label col-lg-2" style="text-align:left;" for="show_chart">Show chart for: </label>
 								<div class="col-sm-4">
-                                    <form runat="server">
-									<asp:DropDownList id="show_chart" class="form-control" runat="server" AutoPostBack="true">
-										<asp:ListItem Value="points">Publication Points</asp:ListItem>
-										<asp:ListItem Value="isi">ISI</asp:ListItem>
-										<asp:ListItem Value="nonisi">Non-ISI</asp:ListItem>
-										<asp:ListItem Value="conferences">Conferences</asp:ListItem>
-										<asp:ListItem Value="patents">Patents</asp:ListItem>
-										<asp:ListItem Value="books">Books</asp:ListItem>
-										<asp:ListItem Value="projects">Projects</asp:ListItem>
-										<asp:ListItem Value="sh_courses">Short courses funding</asp:ListItem>
-										<asp:ListItem Value="grad_students">Graduate students</asp:ListItem>
-									</asp:DropDownList>
-                                    </form>
+									<select id="show_chart" class="form-control">
+										<option Value="points">Publication Points</option>
+										<option Value="isi">ISI</option>
+										<option Value="nonisi">Non-ISI</option>
+										<option Value="conferences">Conferences</option>
+										<option Value="patents">Patents</option>
+										<option Value="books">Books</option>
+										<option Value="projects">Projects</option>
+										<option Value="sh_courses">Short courses funding</option>
+										<option Value="grad_students">Graduate students</option>
+									</select>
 								</div>
 								<div class="col-md-offset-2 col-md-2">
 									<button id="generate-report" type="button" class="btn btn-info" data-toggle="modal" data-target="#report-modal">Create report</button>
@@ -279,6 +277,7 @@
 								<div class="col-md-6" style="border-right:1px solid #eeeeee;">
 									<h4>Publications:</h4>
 									<h5>6 total publication in 2016</h5>
+                                    <asp:Repeater></asp:Repeater>
 									<table class="table table-bordered">
 										<thead>
 											<tr>
