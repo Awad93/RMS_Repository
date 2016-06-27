@@ -76,3 +76,4 @@ c:\users\dsr\documents\visual studio 2015\Projects\RMS_Repository\RMS_Repository
 c:\users\dsr\documents\visual studio 2015\Projects\RMS_Repository\RMS_Repository\bin\Microsoft.Owin.Security.OAuth.xml
 c:\users\dsr\documents\visual studio 2015\Projects\RMS_Repository\RMS_Repository\obj\Debug\RMS_Repository.dll
 c:\users\dsr\documents\visual studio 2015\Projects\RMS_Repository\RMS_Repository\obj\Debug\RMS_Repository.pdb
+c:\users\dsr\documents\visual studio 2015\Projects\RMS_Repository\RMS_Repository\obj\Debug\RMS_Repository.csprojResolveAssemblyReference.cache

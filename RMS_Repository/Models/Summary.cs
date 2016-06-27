@@ -22,7 +22,7 @@ namespace WebApplication1.Models
         #endregion
 
         #region Methods
-        public List<Summary> SummaryAll(int start_year, int end_year)
+        public DataTable SummaryAll(int start_year, int end_year)
         {
             SqlConnection myConnection = new SqlConnection("server=localhost;" +
                 "Trusted_Connection=yes;" +
@@ -36,9 +36,12 @@ namespace WebApplication1.Models
             adapter.SelectCommand.Parameters.Add("@end_year", SqlDbType.Int).Value = end_year;
 
             DataTable dt = new DataTable();
+
             adapter.Fill(dt);
 
-            return helper(dt);
+            helper(dt);
+
+            return dt;
         }
         public List<Summary> SummaryByFaculty(int start_year, int end_year, int id)
         {
