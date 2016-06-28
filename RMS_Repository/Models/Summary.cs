@@ -26,10 +26,10 @@ namespace WebApplication1.Models
         {
             SqlConnection myConnection = new SqlConnection("server=localhost;" +
                 "Trusted_Connection=yes;" +
-                "database = RMS;" +
+                "database = RMS_DB;" +
                 "connection timeout=30;");
 
-            SqlDataAdapter adapter = new SqlDataAdapter("sp_SummaryAll", myConnection);
+            SqlDataAdapter adapter = new SqlDataAdapter("SummaryAll", myConnection);
 
             adapter.SelectCommand.CommandType = CommandType.StoredProcedure;
             adapter.SelectCommand.Parameters.Add("@start_year", SqlDbType.Int).Value = start_year;
@@ -39,7 +39,7 @@ namespace WebApplication1.Models
 
             adapter.Fill(dt);
 
-            helper(dt);
+            //helper(dt);
 
             return dt;
         }

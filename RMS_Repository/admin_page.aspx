@@ -2,6 +2,7 @@
 
 <!DOCTYPE html>
 <head>
+    <title></title>
 	<link href="Content/bootstrap.css" rel="stylesheet" type="text/css">
 	<link href="Content/style.css" rel="stylesheet" type="text/css">
 	<link href="Content/ionicons.css" rel="stylesheet" type="text/css">
@@ -48,9 +49,12 @@
         chart.draw(data, options);
       }
     </script>
+    <script type="text/javascript">
+        var isiTable = $("#publications_table tbody tr").find("td:eq(2)", "td:eq(3)", "td:eq(4)").remove();
+        
+    </script>
 	  
 	  <!-- END: Google Chart -->
-    </script>
 	
 </head>
 <body>
@@ -179,7 +183,6 @@
 										<option Value="patents">Patents</option>
 										<option Value="books">Books</option>
 										<option Value="projects">Projects</option>
-										<option Value="sh_courses">Short courses funding</option>
 										<option Value="grad_students">Graduate students</option>
 									</select>
 								</div>
@@ -277,8 +280,7 @@
 								<div class="col-md-6" style="border-right:1px solid #eeeeee;">
 									<h4>Publications:</h4>
 									<h5>6 total publication in 2016</h5>
-                                    <asp:Repeater></asp:Repeater>
-									<table class="table table-bordered">
+									<table id="publications_table" class="table table-bordered">
 										<thead>
 											<tr>
 												<th>Year</th>
@@ -288,77 +290,25 @@
 												<th>Books</th>
 											</tr>
 										</thead>
-										<tbody>
-											<tr>
-												<td>2016</td>
-												<td>6</td>
-												<td>0</td>
-												<td>3.5</td>
-												<td>0</td>
-											</tr>
-											<tr>
-												<td>2015</td>
-												<td>25</td>
-												<td>0</td>
-												<td>15.25</td>
-												<td>2</td>
-											</tr>
-											<tr>
-												<td>2014</td>
-												<td>6</td>
-												<td>0</td>
-												<td>3.5</td>
-												<td>0</td>
-											</tr>
-											<tr>
-												<td>2013</td>
-												<td>6</td>
-												<td>0</td>
-												<td>3.5</td>
-												<td>0</td>
-											</tr>
-											<tr>
-												<td>2012</td>
-												<td>6</td>
-												<td>0</td>
-												<td>3.5</td>
-												<td>0</td>
-											</tr>
-											<tr>
-												<td>2011</td>
-												<td>6</td>
-												<td>0</td>
-												<td>3.5</td>
-												<td>0</td>
-											</tr>
-											<tr>
-												<td>2010</td>
-												<td>6</td>
-												<td>0</td>
-												<td>3.5</td>
-												<td>0</td>
-											</tr>
-											<tr>
-												<td>2009</td>
-												<td>6</td>
-												<td>0</td>
-												<td>3.5</td>
-												<td>0</td>
-											</tr>
-											<tr>
-												<td>2008</td>
-												<td>6</td>
-												<td>0</td>
-												<td>3.5</td>
-												<td>0</td>
-											</tr>											
-										</tbody>
+                                        <tbody>
+                                        <asp:Repeater ID="publTable" runat="server" OnItemDataBound="publTable_ItemDataBound">
+                                        <ItemTemplate>
+                                            <tr>
+                                                <td><asp:Literal ID="year" runat="server"></asp:Literal></td>
+                                                <td><asp:Literal ID="isi" runat="server"></asp:Literal></td>
+                                                <td><asp:Literal ID="nonisi" runat="server"></asp:Literal></td>
+                                                <td><asp:Literal ID="points" runat="server"></asp:Literal></td>
+                                                <td><asp:Literal ID="books" runat="server"></asp:Literal></td>
+                                            </tr>									
+                                        </ItemTemplate>
+                                        </asp:Repeater>
+                                        </tbody>
 									</table>
 								</div>
 								<div class="col-md-6">
 									<h4>Conferences & Patents:</h4>
 									<h5>3 conferences & 5 patents in 2016</h5>
-									<table class="table table-bordered">
+									<table id="conferences_table" class="table table-bordered">
 										<thead>
 											<tr>
 												<th>Year</th>
@@ -367,51 +317,15 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td>2016</td>
-												<td>0</td>
-												<td>0</td>
-											</tr>
-											<tr>
-												<td>2015</td>
-												<td>0</td>
-												<td>0</td>
-											</tr>
-											<tr>
-												<td>2014</td>
-												<td>0</td>
-												<td>0</td>
-											</tr>
-											<tr>
-												<td>2013</td>
-												<td>0</td>
-												<td>0</td>
-											</tr>
-											<tr>
-												<td>2012</td>
-												<td>0</td>
-												<td>0</td>
-											</tr>
-											<tr>
-												<td>2011</td>
-												<td>0</td>
-												<td>0</td>
-											</tr>
-											<tr>
-												<td>2010</td>
-												<td>0</td>
-												<td>0</td>
-											</tr>
-											<tr>
-												<td>2009</td>
-												<td>0</td>
-												<td>0</td>
-											</tr>
-											<tr>
-												<td>2008</td>
-												<td>0</td>
-												<td>0</td>
-											</tr>
+                                            <asp:Repeater ID="conf_patent" runat="server" OnItemDataBound="conf_patent_ItemDataBound">
+                                                <ItemTemplate>
+                                                <tr>
+                                                    <td><asp:Literal ID="conf_year" runat="server"></asp:Literal></td>
+                                                    <td><asp:Literal ID="conference" runat="server"></asp:Literal></td>
+                                                    <td><asp:Literal ID="patent" runat="server"></asp:Literal></td>
+                                                </tr>
+                                                </ItemTemplate>
+                                            </asp:Repeater>
 										</tbody>
 									</table>
 								</div>
@@ -419,144 +333,55 @@
 							<div class="col-md-12" style="border-top:1px solid #eeeeee;">
 								<h4>Projects:</h4>
 								<h5>3 total projects funded in 2016</h5>
-								<table class="table table-bordered">
+								<table id="project_table" class="table table-bordered">
 									<thead>
 										<tr>
 											<th rowspan="2">Year</th>
-											<th colspan="2">Internal</th>
+											<!--<th colspan="2">Internal</th>
 											<th colspan="2">NSTP</th>
 										</tr>
-										<tr>
+										<tr>-->
 											<th>Projects</th>
 											<th>Funds</th>
-											<th>Projects</th>
-											<th>Funds</th>
+											<!--<th>Projects</th>
+											<th>Funds</th>-->
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>2016</td>
-											<td>2</td>
-											<td>45,600 <small>SAR</small></td>
-											<td>0</td>											
-											<td>0</td>
-										</tr>
-										<tr>
-											<td>2015</td>
-											<td>2</td>
-											<td>45,600 <small>SAR</small></td>
-											<td>0</td>											
-											<td>0</td>
-										</tr>
-										<tr>
-											<td>2014</td>
-											<td>2</td>
-											<td>45,600 <small>SAR</small></td>
-											<td>0</td>											
-											<td>0</td>
-										</tr>
-										<tr>
-											<td>2013</td>
-											<td>2</td>
-											<td>45,600 <small>SAR</small></td>
-											<td>0</td>											
-											<td>0</td>
-										</tr>
-										<tr>
-											<td>2012</td>
-											<td>2</td>
-											<td>45,600 <small>SAR</small></td>
-											<td>0</td>											
-											<td>0</td>
-										</tr>
-										<tr>
-											<td>2011</td>
-											<td>2</td>
-											<td>45,600 <small>SAR</small></td>
-											<td>0</td>											
-											<td>0</td>
-										</tr>
-										<tr>
-											<td>2010</td>
-											<td>2</td>
-											<td>45,600 <small>SAR</small></td>
-											<td>0</td>											
-											<td>0</td>
-										</tr>
-										<tr>
-											<td>2009</td>
-											<td>2</td>
-											<td>45,600 <small>SAR</small></td>
-											<td>0</td>											
-											<td>0</td>
-										</tr>
-										<tr>
-											<td>2008</td>
-											<td>2</td>
-											<td>45,600 <small>SAR</small></td>
-											<td>0</td>											
-											<td>0</td>
-										</tr>
+										<asp:Repeater ID="project" runat="server" OnItemDataBound="project_ItemDataBound">
+                                                <ItemTemplate>
+                                                <tr>
+                                                    <td><asp:Literal ID="proj_year" runat="server"></asp:Literal></td>
+                                                    <td><asp:Literal ID="projects" runat="server"></asp:Literal></td>
+                                                    <td><asp:Literal ID="fund" runat="server"></asp:Literal></td>
+                                                </tr>
+                                                </ItemTemplate>
+                                            </asp:Repeater>
 									</tbody>
 								</table>
 							</div>
 							<div class="col-md-12" style="border-top:1px solid #eeeeee;">
 								<h4>Short courses & Graduate students:</h4>
 								<h5>0 short courses funds & 0 graduate students in 2016</h5>
-								<table class="table table-bordered">
+								<table id="graduate_table" class="table table-bordered">
 									<thead>
 										<tr>
 											<th>Year</th>
-											<th>Short courses funding</th>
+											<!--<th>Short courses funding</th>-->
 											<th>Graduate students</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>2016</td>
-											<td>0</td>
-											<td>0</td>
-										</tr>
-										<tr>
-											<td>2015</td>
-											<td>0</td>
-											<td>0</td>
-										</tr>
-										<tr>
-											<td>2014</td>
-											<td>0</td>
-											<td>0</td>
-										</tr>
-										<tr>
-											<td>2013</td>
-											<td>0</td>
-											<td>0</td>
-										</tr>
-										<tr>
-											<td>2012</td>
-											<td>0</td>
-											<td>0</td>
-										</tr>
-										<tr>
-											<td>2011</td>
-											<td>0</td>
-											<td>0</td>
-										</tr>
-										<tr>
-											<td>2010</td>
-											<td>0</td>
-											<td>0</td>
-										</tr>
-										<tr>
-											<td>2009</td>
-											<td>0</td>
-											<td>0</td>
-										</tr>
-										<tr>
-											<td>2008</td>
-											<td>0</td>
-											<td>0</td>
-										</tr>
+										<asp:Repeater ID="courses_graduate" runat="server" OnItemDataBound="courses_graduate_ItemDataBound">
+                                                <ItemTemplate>
+                                                <tr>
+                                                    <td><asp:Literal ID="course_year" runat="server"></asp:Literal></td>
+                                                    <!--<td><asp:Literal ID="projects" runat="server"></asp:Literal></td>
+                                                    <td>0</td>-->
+                                                    <td><asp:Literal ID="graduate" runat="server"></asp:Literal></td>
+                                                </tr>
+                                                </ItemTemplate>
+                                       </asp:Repeater>
 									</tbody>
 								</table>
 							</div>		
