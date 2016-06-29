@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using WebApplication1.Models;
+using System.Web.Script.Serialization;
 
 namespace RMS_Repository
 {
@@ -14,11 +15,6 @@ namespace RMS_Repository
         protected void Page_Load(object sender, EventArgs e)
         {
             getData();
-        }
-
-        protected void show_chart_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         public void getData()
@@ -40,6 +36,8 @@ namespace RMS_Repository
             DataTable courseTable = courseData(summary);
             courses_graduate.DataSource = courseTable;
             courses_graduate.DataBind();
+
+            publPoints(summary);
 
         }
 
@@ -119,6 +117,24 @@ namespace RMS_Repository
 
 
             }
+        }
+
+        public void publPoints(DataTable table)
+        {
+            double[][] publpoints = new double[table.Rows.Count][];
+            int i = 0;
+            foreach(DataRow row in table.Rows)
+            {
+                publpoints[i] = new double[2]{ (double)row["Year"],  (double)row["Publication_Points"]};
+                //publpoints[i][1] = (double)row["Publication_Points"];
+                i++;
+            }
+
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            var json = serializer.Serialize(publpoints);
+
+            points.Value = json;
+            i = 0;
         }
     }
 }

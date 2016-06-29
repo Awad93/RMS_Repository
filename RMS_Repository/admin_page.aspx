@@ -20,37 +20,60 @@
     
 	<script type="text/javascript">
       // Load the Visualization API and the corechart package.
-      google.charts.load('current', {'packages':['corechart']});
+        google.charts.load('current', {'packages':['corechart']});
 
       // Set a callback to run when the Google Visualization API is loaded.
-      google.charts.setOnLoadCallback(drawChart);
+        google.charts.setOnLoadCallback(publication_points);
+        $(document).ready(function () {
+            var data = document.getElementById("points");
+            var points = JSON.parse(data.Value);
+            console.log(data);
+        });
 
       // Callback that creates and populates a data table,
       // instantiates the pie chart, passes in the data and
       // draws it.
-      function drawChart() {
+      //function drawChart() {
 
-         var data = google.visualization.arrayToDataTable([
-          ['Year', 'Sales', 'Expenses'],
-          ['2004',  1000,      400],
-          ['2005',  1170,      460],
-          ['2006',  660,       1120],
-          ['2007',  1030,      540]
-        ]);
+      //   var data = google.visualization.arrayToDataTable([
+      //    ['Year', 'Sales', 'Expenses'],
+      //    ['2004',  1000,      400],
+      //    ['2005',  1170,      460],
+      //    ['2006',  660,       1120],
+      //    ['2007',  1030,      540]
+      //  ]);
 
-        var options = {
-          title: 'Company Performance',
-          curveType: 'function',
-          legend: { position: 'bottom' }
-        };
+      //  var options = {
+      //    title: 'Company Performance',
+      //    curveType: 'function',
+      //    legend: { position: 'bottom' }
+      //  };
 
-        var chart = new google.visualization.LineChart(document.getElementById('mychart'));
+      //  var chart = new google.visualization.LineChart(document.getElementById('mychart'));
 
-        chart.draw(data, options);
-      }
-    </script>
-    <script type="text/javascript">
-        var isiTable = $("#publications_table tbody tr").find("td:eq(2)", "td:eq(3)", "td:eq(4)").remove();
+      //  chart.draw(data, options);
+      //}
+    
+        //var isiTable = $("#publications_table tbody tr").find("td:eq(2)", "td:eq(3)", "td:eq(4)").remove();
+        //document.createElement("table")
+      
+      function publication_points() {
+
+            //var rows = $("#publications_table tbody tr").length;
+            //var data = $("#publications_table thead tr").find("th:eq(0)").text;
+            //var data = [[$("#publications_table thead tr").find("td:eq(0)").text, $("#publications_table thead tr").find("td:eq(3)").text]];
+            ////var data = new Array();
+            //for (i = 0; i < rows; i++) {
+            //    data.push([$("#publications_table tbody tr").find("td:eq(0)").text, $("#publications_table tbody tr").find("td:eq(3)").text]);
+            //}
+            //var chart_data = google.visualization.arrayToDataTable(data, true);
+
+            //var chart = new google.visualization.LineChart(document.getElementById('mychart'));
+            //chart.draw(chart_data);
+            
+        }
+
+        //$(document).ready(publication_points);
         
     </script>
 	  
@@ -58,6 +81,11 @@
 	
 </head>
 <body>
+    <form runat="server">
+
+        <asp:HiddenField ClientIDMode="Static" ID="points" runat="server" />
+    </form>
+    
 <!-- Header -->
 	<header class="header">
 		<div class="container-fluid">
@@ -465,9 +493,9 @@
 	 };
 
 </script> -->
-<script>
+<%--<script>
 	$('ul.nav a').on('shown.bs.tab', function (e) {
-		drawChart();
+		publication_points();
 });
-</script>
+</script>--%>
 </body>
